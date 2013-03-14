@@ -7,17 +7,6 @@
     <meta name="viewport" content="width=device-width" />
     <title>em</title>
     <link rel="stylesheet" href="css/app.css">
-    <style>
-      .left-col, .right-col {
-        float: left;
-      }
-      .left-col {
-        width: 200px;
-      }
-      .right-col {
-        width: 400px;
-      }
-    </style>
   </head>
 
   <script type="text/x-handlebars" data-template="application">    
@@ -36,18 +25,22 @@
 
   <script type="text/x-handlebars" data-template-name="postSidebar">
   {{#each post in controller}}
-      <div class="post-sidebar">
-        {{#linkTo "post" post}}      
-          {{ post.title }}
-        {{/linkTo}}
-      </div>
+      <ul class="post-sidebar">
+        <li>
+          {{#linkTo "post" post}}      
+            {{ post.title }}
+          {{/linkTo}}
+        </li>
+      </ul>
     {{/each}}
   </script>
 
 <script type="text/x-handlebars" data-template-name="post">
     <div class="post-main">
-    <h2>{{ title }}</h2>
-    <p>{{ body }}</p>
+      <h2>{{{ title }}}</h2>
+      <small>{{ author }}</small>
+      <hr>
+      {{{ content.content }}}
     </div>
 </script>
 

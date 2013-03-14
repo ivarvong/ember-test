@@ -16,24 +16,34 @@ App.PostsController = Ember.ArrayController.extend();
 
 App.Store = DS.Store.extend({
   revision: 11,
-  adapter: 'DS.FixtureAdapter'
+  adapter: 'DS.DumbAdapter'
 });
 
 App.Post = DS.Model.extend({
   title: DS.attr('string'),
-  body: DS.attr('string')
+  content: DS.attr('string'),
+  author: DS.attr('string'),
+  tags: DS.attr('string'),
+  catagories: DS.attr('string')
 });
 
-App.Post.FIXTURES = [{
-  id: 1,
-  title: "A post title!",
-  body: "A post body goes here yo!"
-}, {
-  id: 4,
-  title: "Second post, baby.",
-  body: "A post body goes  asdf ads s s df yo!"
-}, {
-  id: 9,
-  title: "The third and final post",
-  body: "Hipster ipsum is my blood"
-}];
+
+DS.DumbAdapter = DS.Adapter.extend({
+  find: function (store, type, id) { 
+    console.log('find')
+    store.load(type, []);    
+  },
+  findAll: function (store, type) { 
+    var self = this;
+    console.log('findAll', store, type)
+    var url = "http://dailyemerald.com/json/?callback=?"
+    $.getJSON(url, function(data) {
+      console.log(data);
+      var posts = {
+        "posts": data
+      }
+      store.loadMany(type, posts);
+      self.didFindAll(store, type, posts);
+    });
+  }
+});

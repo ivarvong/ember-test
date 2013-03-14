@@ -1,0 +1,25 @@
+body {
+  color: #333;
+  font-family: 'Georgia';
+  font-size: 16px;
+  line-height: 24px;
+}
+.left-col, .right-col {
+        float: left;
+        height: 100%;
+      }
+      .left-col {
+        width: 200px;
+        border-right: 1px solid #333;
+      }
+      .right-col {
+        margin-left: 20px;
+        width: 400px;
+      }
+
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #CCC;
+        color: #333;
+      }
