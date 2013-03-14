@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>em</title>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+      .left-col, .right-col {
+        float: left;
+      }
+      .left-col {
+        width: 200px;
+      }
+      .right-col {
+        width: 400px;
+      }
+    </style>
+  </head>
+
+  <script type="text/x-handlebars" data-template="application">    
+    {{ outlet }}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="posts">
+    <div class="left-col">
+      <h3>emerald news</h3>
+      {{ template postSidebar }}
+    </div>
+    <div class="right-col">
+      {{ outlet }}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="postSidebar">
+  {{#each post in controller}}
+      <div class="post-sidebar">
+        {{#linkTo "post" post}}      
+          {{ post.title }}
+        {{/linkTo}}
+      </div>
+    {{/each}}
+  </script>
+
+<script type="text/x-handlebars" data-template-name="post">
+    <div class="post-main">
+    <h2>{{ title }}</h2>
+    <p>{{ body }}</p>
+    </div>
+</script>
+
+  <body>
+    <script src="js/libs/jquery-1.8.3.min.js"></script>
+    <script src="js/libs/handlebars-1.0.0.rc.2.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
